@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+textarea{
+    font-size:25px !important;
+    resize: none !important;
+    height: 250px !important;
+}
+#to_text{
+    background-color: rgb(217, 217, 217) !important;
+}
+#translate_button{
+    font-size: 25px !important;
+}
+i{
+    font-size: 30px !important;
+    cursor: pointer;
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">    <title>first page</title>
+</head>
+<body class="bg-primary">
+    <div class="container bg-secondary-subtle p-3 ">
+        <div class="row p-2">
+            <div class="col-5 d-flex justify-content-center align-items-center">
+                <div class="icons">
+                <i id="from" class="fa-regular fa-copy"></i>
+                <i id="from" class="fa-solid fa-music"></i>  
+                </div>
+            </div>
+            <div class="col-2  d-flex justify-content-center align-items-center">
+                <i class="fa-solid fa-arrow-right-arrow-left" id="exchange_icon"></i>
+            </div>
+            <div class="col-5  d-flex justify-content-center align-items-center">
+                <div class="icons">
+                    <i id="to" class="fa-regular fa-copy"></i>
+                    <i id="to" class="fa-solid fa-music"></i>  
+                    </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-6 ">
+                <select  id="from_select" class="form-select"></select>
+                <textarea id="from_text" class="form-control" placeholder="Metin Giriniz"></textarea>
+            </div>
+            <div class="col-6 ">
+                <select  id="to_select" class="form-select"></select>
+                <textarea id="to_text" class="form-control" disabled readonly placeholder="Çeviri"></textarea>
+            </div>
+        </div>
+        <div class="row p-2">
+            <button class="btn btn-danger" id="translate_button">Translate</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
+    <script>
+    const languages = {
+        "am-ET": "Amharic",
+        "ar-SA": "Arabic",
+        "be-BY": "Bielarus",
+        "bem-ZM": "Bemba",
+        "bi-VU": "Bislama",
+        "bjs-BB": "Bajan",
+        "bn-IN": "Bengali",
+        "bo-CN": "Tibetan",
+        "br-FR": "Breton",
+        "bs-BA": "Bosnian",
+        "ca-ES": "Catalan",
+        "cop-EG": "Coptic",
+        "cs-CZ": "Czech",
+        "cy-GB": "Welsh",
+        "da-DK": "Danish",
+        "dz-BT": "Dzongkha",
+        "de-DE": "German",
+        "dv-MV": "Maldivian",
+        "el-GR": "Greek",
+        "en-GB": "English",
+        "es-ES": "Spanish",
+        "et-EE": "Estonian",
+        "eu-ES": "Basque",
+        "fa-IR": "Persian",
+        "fi-FI": "Finnish",
+        "fn-FNG": "Fanagalo",
+        "fo-FO": "Faroese",
+        "fr-FR": "French",
+        "gl-ES": "Galician",
+        "gu-IN": "Gujarati",
+        "ha-NE": "Hausa",
+        "he-IL": "Hebrew",
+        "hi-IN": "Hindi",
+        "hr-HR": "Croatian",
+        "hu-HU": "Hungarian",
+        "id-ID": "Indonesian",
+        "is-IS": "Icelandic",
+        "it-IT": "Italian",
+        "ja-JP": "Japanese",
+        "kk-KZ": "Kazakh",
+        "km-KM": "Khmer",
+        "kn-IN": "Kannada",
+        "ko-KR": "Korean",
+        "ku-TR": "Kurdish",
+        "ky-KG": "Kyrgyz",
+        "la-VA": "Latin",
+        "lo-LA": "Lao",
+        "lv-LV": "Latvian",
+        "men-SL": "Mende",
+        "mg-MG": "Malagasy",
+        "mi-NZ": "Maori",
+        "ms-MY": "Malay",
+        "mt-MT": "Maltese",
+        "my-MM": "Burmese",
+        "ne-NP": "Nepali",
+        "niu-NU": "Niuean",
+        "nl-NL": "Dutch",
+        "no-NO": "Norwegian",
+        "ny-MW": "Nyanja",
+        "ur-PK": "Pakistani",
+        "pau-PW": "Palauan",
+        "pa-IN": "Panjabi",
+        "ps-PK": "Pashto",
+        "pis-SB": "Pijin",
+        "pl-PL": "Polish",
+        "pt-PT": "Portuguese",
+        "rn-BI": "Kirundi",
+        "ro-RO": "Romanian",
+        "ru-RU": "Russian",
+        "sg-CF": "Sango",
+        "si-LK": "Sinhala",
+        "sk-SK": "Slovak",
+        "sm-WS": "Samoan",
+        "sn-ZW": "Shona",
+        "so-SO": "Somali",
+        "sq-AL": "Albanian",
+        "sr-RS": "Serbian",
+        "sv-SE": "Swedish",
+        "sw-SZ": "Swahili",
+        "ta-LK": "Tamil",
+        "te-IN": "Telugu",
+        "tet-TL": "Tetum",
+        "tg-TJ": "Tajik",
+        "th-TH": "Thai",
+        "ti-TI": "Tigrinya",
+        "tk-TM": "Turkmen",
+        "tl-PH": "Tagalog",
+        "tn-BW": "Tswana",
+        "to-TO": "Tongan",
+        "tr-TR": "Turkish",
+        "uk-UA": "Ukrainian",
+        "uz-UZ": "Uzbek",
+        "vi-VN": "Vietnamese",
+        "wo-SN": "Wolof",
+        "xh-ZA": "Xhosa",
+        "yi-YD": "Yiddish",
+        "zu-ZA": "Zulu"
+    }</script>
+
+    <script>
+        
+const toLang=document.querySelector('#to_select');
+const fromLang=document.querySelector('#from_select');
+const toText=document.querySelector('#to_text');
+const fromText=document.querySelector('#from_text');
+const translate_button=document.querySelector('#translate_button');
+const exchange_icon=document.querySelector('#exchange_icon');
+const icons=document.querySelectorAll('.icons');
+for(let lng in languages){
+var option=`
+<option value="${lng}">${languages[lng]}</option>`;
+fromLang.insertAdjacentHTML('beforeend',option);
+toLang.insertAdjacentHTML('beforeend',option);
+fromLang.value="tr-TR";
+toLang.value="en-GB";
+}
+translate_button.addEventListener('click',()=>{
+    let text=fromText.value;
+    let from=fromLang.value;
+    let to=toLang.value;
+    const url=`https://api.mymemory.translated.net/get?q=${text}!&langpair=${from}|${to}`;
+    fetch(url)
+    .then((response)=>{
+        return response.json();
+    })
+    .then((data)=>{
+        toText.value="";
+        toText.value=data.responseData.translatedText;
+    })
+
+})
+exchange_icon.addEventListener('click',()=>{
+    let text=fromText.value;
+    fromText.value=toText.value;
+    toText.value=text;
+
+    let lng=fromLang.value;
+    fromLang.value=toLang.value;
+    toLang.value=lng;
+})
+for(let icon of icons){
+
+    icon.addEventListener('click',(element)=>{
+        if(element.target.classList.contains('fa-copy')){
+            if(element.target.id=="to"){
+                console.log('to copy icon')
+                navigator.clipboard.writeText(toText.value);
+            }
+            else{
+                console.log('from copy icon')
+                navigator.clipboard.writeText(fromText.value);
+
+            }
+        }
+        else{
+            var utterance;
+            if(element.target.id=="from"){
+                utterance=new SpeechSynthesisUtterance(fromText.value);
+                utterance.lang=fromLang.value;
+                console.log('from volume icon')
+            }
+            else{
+                utterance=new SpeechSynthesisUtterance(toText.value);
+                utterance.lang=toLang.value;
+                console.log('to volume icon')
+            }
+            speechSynthesis.speak(utterance);   
+        }
+    })
+
+}
+   </script>
+</body>
+</html>

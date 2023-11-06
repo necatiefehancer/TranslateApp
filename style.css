@@ -1,0 +1,21 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+textarea{
+    font-size:25px !important;
+    resize: none !important;
+    height: 250px !important;
+}
+#to_text{
+    background-color: rgb(217, 217, 217) !important;
+}
+#translate_button{
+    font-size: 25px !important;
+}
+i{
+    font-size: 30px !important;
+    cursor: pointer;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">    <title>first page</title>
+</head>
+<body class="bg-primary">
+    <div class="container bg-secondary-subtle p-3 ">
+        <div class="row p-2">
+            <div class="col-5 d-flex justify-content-center align-items-center">
+                <div class="icons">
+                <i id="from" class="fa-regular fa-copy"></i>
+                <i id="from" class="fa-solid fa-music"></i>  
+                </div>
+            </div>
+            <div class="col-2  d-flex justify-content-center align-items-center">
+                <i class="fa-solid fa-arrow-right-arrow-left" id="exchange_icon"></i>
+            </div>
+            <div class="col-5  d-flex justify-content-center align-items-center">
+                <div class="icons">
+                    <i id="to" class="fa-regular fa-copy"></i>
+                    <i id="to" class="fa-solid fa-music"></i>  
+                    </div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-6 ">
+                <select  id="from_select" class="form-select"></select>
+                <textarea id="from_text" class="form-control" placeholder="Metin Giriniz"></textarea>
+            </div>
+            <div class="col-6 ">
+                <select  id="to_select" class="form-select"></select>
+                <textarea id="to_text" class="form-control" disabled readonly placeholder="Çeviri"></textarea>
+            </div>
+        </div>
+        <div class="row p-2">
+            <button class="btn btn-danger" id="translate_button">Translate</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
+    <script src="languages.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
